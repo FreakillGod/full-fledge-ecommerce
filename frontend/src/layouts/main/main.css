@@ -1,0 +1,98 @@
+.section-about {
+  background-color: #eee;
+  padding: 15rem;
+  margin-top: -20vh;
+}
+
+@media (max-width: 56.25em) {
+  .section-about {
+    padding: 6rem;
+    margin-top: -5vh;
+  }
+}
+
+@media (max-width: 75em) {
+  .section-about {
+    padding: 13rem;
+    padding-top: 24rem;
+    padding-bottom: 25rem;
+    margin-top: -20vh;
+  }
+}
+
+@media (max-width: 37.5em) {
+  .section-about {
+    padding: 6rem;
+    padding-top: 20rem;
+    padding-bottom: 15rem;
+    margin-top: -14vh;
+  }
+}
+
+.preview {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 56.25em) {
+  .preview {
+    flex-direction: column;
+    margin-bottom: 15rem;
+  }
+}
+
+.preview-left {
+  flex: 1;
+  margin-bottom: 4rem;
+}
+
+.preview-right {
+  flex: 1;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+}
+
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.composition {
+  position: relative;
+}
+
+.composition__photo {
+  width: 55%;
+  /* box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4); */
+  position: absolute;
+  z-index: 10;
+  transition: all 0.2s;
+  outline-offset: 2rem;
+}
+
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+
+.composition__photo--p2 {
+  right: 0;
+  top: 2rem;
+}
+
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+
+.composition__photo:hover {
+  transform: scale(1.05) translateY(-0.5rem);
+  /* box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5); */
+  z-index: 20;
+  /* outline: 1rem solid #55c57a; */
+}
+
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(0.9);
+}
