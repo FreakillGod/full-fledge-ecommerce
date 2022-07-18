@@ -7,9 +7,9 @@ const ProtectedRoute = () => {
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
   const location = useLocation();
 
-//   if (loading) {
-//     return <Loader />;
-//   }
+  //   if (loading) {
+  //     return <Loader />;
+  //   }
   if (isAuthenticated == false) {
     return <Navigate to="/account" state={{ from: location }} />;
   }

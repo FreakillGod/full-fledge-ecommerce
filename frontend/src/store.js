@@ -15,6 +15,7 @@ import {
   forgotPasswordReducer,
 } from "./redux/reducers/userReducer";
 import { cartReducer } from "./redux/reducers/cartReducer";
+import { myOrdersReducer, newOrderReducer } from "./redux/reducers/orderReducer";
 
 const reducer = combineReducers({
   products: productReducer,
@@ -23,6 +24,8 @@ const reducer = combineReducers({
   profile: profileReducer,
   forgotPassword: forgotPasswordReducer,
   cart: cartReducer,
+  newOrder:newOrderReducer,
+  myOrder:myOrdersReducer,
 });
 
 let initialState = {

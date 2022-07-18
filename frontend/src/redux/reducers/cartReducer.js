@@ -3,6 +3,7 @@ import {
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
 } from "../constants/cartConstants";
+import { GET_STRIPE_KEY_REQ } from "../constants/orderConstants";
 
 const initailState = {
   cartItems: [],
@@ -42,6 +43,11 @@ export const cartReducer = (state = initailState, action) => {
       return {
         ...state,
         shippingInfo: action.payload,
+      };
+    case GET_STRIPE_KEY_REQ:
+      return {
+        ...state,
+        key: action.payload,
       };
     default:
       return state;

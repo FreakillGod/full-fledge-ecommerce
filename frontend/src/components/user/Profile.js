@@ -48,7 +48,8 @@ const Profile = () => {
                 </p>
               </div>
               <div>
-                <Link to={"/cart"}>My orders</Link>
+                <Link to={"/cart"}>Cart</Link>
+                <Link to={"/orders/me"}>My orders</Link>
                 <Link to="/password/update">Change Password</Link>
               </div>
             </div>

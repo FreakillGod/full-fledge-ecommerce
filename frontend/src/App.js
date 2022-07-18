@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
+
+import store from "./store";
+import { loadUser } from "./redux/actions/userAction";
+import { useSelector } from "react-redux";
 
 //components
 import Navigation from "./layouts/navigation/Navigation";
@@ -12,6 +17,7 @@ import Search from "./components/search/Search";
 import Products from "./components/card/Products";
 import Home from "./components/home/Home";
 import ProductDetails from "./components/productDetails/ProductDetails";
+
 import LoginSignUp from "./components/user/LoginSignup";
 import Profile from "./components/user/Profile";
 import ProfileEdit from "./components/user/ProfileEdit";
@@ -22,21 +28,29 @@ import ResetPassword from "./components/user/ResetPassword.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import Shipping from "./components/Cart/Shipping.jsx";
 import ConfirmOrder from "./components/Cart/ConfirmOrder.jsx";
-
-import { useEffect } from "react";
+import Payment from "./components/Cart/Payment.jsx";
+import Success from "./components/Cart/Success.jsx";
+import MyOrders from "./components/Cart/MyOrders.jsx";
 
 import ProtectedRoute from "./components/route/ProtectedRoute";
 
-import store from "./store";
-import { loadUser } from "./redux/actions/userAction";
-import { useSelector } from "react-redux";
-
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+  const getStripeApiKey = async () => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/v1/stripeapikey`,
+      {
+        withCredentials: true,
+      }
+    );
+    setStripeApiKey(data.stripeApiKey);
+  };
   console.log("user", user);
   console.log("isAuthenticated", isAuthenticated);
   useEffect(() => {
     store.dispatch(loadUser());
+    getStripeApiKey();
   }, []);
 
   return (
@@ -56,11 +70,20 @@ function App() {
           <Route path="/password/update" element={<UpdatePassword />} />
           <Route path="/login/shipping" element={<Shipping />} />
           <Route path="/order/confirm" element={<ConfirmOrder />} />
+          <Route path="/order/success" element={<Success />} />
+          <Route path="/orders/me" element={<MyOrders />} />
+          {stripeApiKey && (
+            <Route
+              path="/order/payment"
+              element={<Payment stkey={stripeApiKey} />}
+            />
+          )}
         </Route>
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+
       {/* <Header/>
       <Main/>
       <Deals/>

@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import './navigation.css'
 import { Link } from 'react-router-dom'
 
 
 const Navigation = () => {
 
-  const [close, setClose] = useState(true);
   const checkRef = useRef(null)
 
   // const isChecked = (e) => {
@@ -63,6 +62,12 @@ const Navigation = () => {
             <Link to="/login" className="navigation__link">
               {" "}
               <span>05</span>Support{" "}
+            </Link>
+          </li>
+          <li className="navigation__item">
+            <Link to="/" className="navigation__link">
+              {" "}
+              <span>06</span>Home{" "}
             </Link>
           </li>
         </ul>

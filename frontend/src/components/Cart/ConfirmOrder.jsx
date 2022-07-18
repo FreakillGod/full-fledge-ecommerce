@@ -35,7 +35,8 @@ const ConfirmOrder = () => {
 
         sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-        navigate("/process/payment");
+        console.log("is this working")
+        navigate("/order/payment");
     };
 
     return (

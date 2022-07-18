@@ -2,9 +2,10 @@ const catchAsyncErrors = require("../middleware/catchAsyncError");
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
 
 exports.processPayment= catchAsyncErrors(async(req,res,next)=>{
+    console.log('req.body', req.body)
     const payment= await stripe.paymentIntents.create({
         amount:req.body.amount,
-        curreny:"inr",
+        currency:"inr",
         metadata:{
             company:"e-Shopping",
         },
